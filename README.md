@@ -15,7 +15,7 @@ Fast create an server-side-render app contains both [serverless ssr](https://git
 
 ```js
 const templateMap: TemplateMap = {
-  'spa': 'https://github.com/ykfe/ssr/tree/dev/example/spa',
+  'spa': 'https://github.com/ykfe/ssr/tree/dev/example/spa', // 创建 serverless-ssr 应用
   'ssr-with-js': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-js',
   'ssr-with-ts': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-ts',
   'ssr-with-antd': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-antd',
