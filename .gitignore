@@ -1,0 +1,8 @@
+.DS_Store
+node_modules
+package-lock.json
+bin
+yarn.lock
+coverage
+temporary
+.git_backup
