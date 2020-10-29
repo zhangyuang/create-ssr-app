@@ -30,3 +30,9 @@ $ npm install
 $ npm start
 ```
 
+## Publish On NPM
+
+```bash
+$ npm version patch|minor|major
+$ git push origin master # github ci will publish package on NPM automatically
+```
