@@ -60,6 +60,7 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/package.json') }}
       - run: yarn test
   lint:
+    needs: install
     strategy:
         matrix:
           os: [ubuntu-latest, macos-latest, windows-latest]

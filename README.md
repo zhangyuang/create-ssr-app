@@ -1,8 +1,15 @@
 # create-ssr-app
 
-Create an app powered by [serverless ssr](https://github.com/ykfe/ssr) or [egg-react-ssr](https://github.com/ykfe/egg-react-ssr/)
+<a href="https://github.com/zhangyuang/create-ssr-app/actions">
+  <img src="https://github.com/zhangyuang/create-ssr-app/workflows/CI/badge.svg"/>
+</a>
+<a href="https://codecov.io/gh/zhangyuang/create-ssr-app">
+  <img src="https://codecov.io/gh/zhangyuang/create-ssr-app/branch/master/graph/badge.svg?token=TW0NOTDU39"/>
+</a>  
 
-## template list
+Fast create an server-side-render app contains both [serverless ssr](https://github.com/ykfe/ssr) and [egg-react-ssr](https://github.com/ykfe/egg-react-ssr/) realized by [dclone](https://github.com/ykfe/dclone)
+
+## Template list
 
 可创建以下应用类型
 
