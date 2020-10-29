@@ -19,7 +19,7 @@ const init = async (options?: Options) => {
   const cwd = process.cwd()
 
   const templateMap: TemplateMap = {
-    'serverless-spa': 'https://github.com/ykfe/ssr/tree/dev/example/spa',
+    'spa': 'https://github.com/ykfe/ssr/tree/dev/example/spa',
     'ssr-with-js': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-js',
     'ssr-with-ts': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-ts',
     'ssr-with-antd': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-antd',
@@ -31,13 +31,12 @@ const init = async (options?: Options) => {
   } else {
     logGreen(`${argv.template} 应用创建中...`)
   }
-  const template: string = argv.template || 'serverless-spa'
+  const template: string = argv.template || 'spa'
   const dir = templateMap[template]
   await dclone({
     dir
   })
-  let createDir = template === 'serverless-spa' ? 'spa' : template
-  Shell.mv(`${join(cwd, `./example/${createDir}`)}`, `${join(cwd, `./${targetDir}`)}`)
+  Shell.mv(`${join(cwd, `./example/${template}`)}`, `${join(cwd, `./${targetDir}`)}`)
   Shell.rm('-rf', `${join(cwd, './example')}`)
   console.log(`  cd ${targetDir}`)
   console.log(`  npm install (or \`yarn\`)`)

@@ -4,11 +4,11 @@
   "description": "Create Serverless SSR App",
   "main": "./bin/init.js",
   "scripts": {
-    "dev": "tsc -w -p ./tsconfig.json",
-    "build": "tsc -p ./tsconfig.json --inlineSourceMap false",
-    "lint": "tslint -c tslint.json -p ./tsconfig.json",
-    "lint:fix": "tslint -c tslint.json -p ./tsconfig.json --fix",
-    "test": "jest --coverage --verbose && codecov"
+    "dev": "cross-env tsc -w -p ./tsconfig.json",
+    "build": "cross-env tsc -p ./tsconfig.json --inlineSourceMap false",
+    "lint": "cross-env tslint -c tslint.json -p ./tsconfig.json",
+    "lint:fix": "cross-env tslint -c tslint.json -p ./tsconfig.json --fix",
+    "test": "cross-env jest --coverage --verbose && codecov"
   },
   "bin": {
     "create-ssr-app": "bin/index.js",
@@ -33,6 +33,7 @@
     "@types/node": "^14.0.27",
     "@types/shelljs": "^0.8.8",
     "codecov": "^3.8.0",
+    "cross-env": "^7.0.2",
     "husky": "^4.3.0",
     "jest": "^26.6.1",
     "ts-jest": "^26.4.3",
