@@ -11,7 +11,7 @@ Fast create an server-side-render app contains both [serverless ssr](https://git
 
 ## Template list
 
-可创建 Serverless-Side-Render 应用 或者 传统的 Node.js Server-Side-Render 应用 即 [egg-react-ssr](https://github.com/ykfe/egg-react-ssr/)
+可创建 Serverless-Side-Render 应用 或者 传统的 Node.js Server-Side-Render 应用 即 [egg-react-ssr](https://github.com/ykfe/egg-react-ssr/) 
 
 ```js
 const templateMap: TemplateMap = {
