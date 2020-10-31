@@ -6,6 +6,7 @@
 <a href="https://codecov.io/gh/zhangyuang/create-ssr-app">
   <img src="https://codecov.io/gh/zhangyuang/create-ssr-app/branch/master/graph/badge.svg?token=TW0NOTDU39"/>
 </a>  
+<a href="https://npmcharts.com/compare/create-ssr-app"><img src="https://img.shields.io/npm/dt/create-ssr-app" alt="download"></a>
 
 Fast create an server-side-render app contains both [serverless ssr](https://github.com/ykfe/ssr) and [egg-react-ssr](https://github.com/ykfe/egg-react-ssr/) realized by [dclone](https://github.com/ykfe/dclone)
 
