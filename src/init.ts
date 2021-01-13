@@ -1,3 +1,4 @@
+import * as fs from 'fs'
 import { join } from 'path'
 import * as process from 'process'
 import * as Shell from 'shelljs'
@@ -25,7 +26,16 @@ const init = async (options?: Options) => {
     'ssr-with-antd': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-antd',
     'ssr-with-dva': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-dva'
   }
-  const targetDir = argv._[0] || '.'
+  if (!argv._[0]) {
+    logGreen('未指定项目名称 请使用格式 npm init ssr-app <project-name>')
+    return
+  }
+  const targetDir = argv._[0]
+
+  if (fs.existsSync(targetDir)) {
+    logGreen(`${targetDir}文件夹已存在，请先删除`)
+    return
+  }
   if (templateMap[argv.template] === undefined) {
     logGreen('未选择模版类型，默认创建 serverless-spa 应用')
   } else {
