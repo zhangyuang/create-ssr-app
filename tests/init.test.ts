@@ -22,34 +22,34 @@ describe('test create', () => {
     Shell.mkdir(testPath)
   })
   test('serverless-spa program can be init', async () => {
-    process.argv = ['node', 'index.js', '.']
+    process.argv = ['node', 'index.js', 'my-ssr-project']
     await init()
-    expect(existsSync(resolve(testPath, './spa/f.yml')))
+    expect(existsSync(resolve(testPath, './my-ssr-project/f.yml')))
   }, 100000)
   test('serverless-spa program can be init', async () => {
-    process.argv = ['node', 'index.js', '.', '--template=spa']
+    process.argv = ['node', 'index.js', 'my-ssr-project', '--template=spa']
     await init()
-    expect(existsSync(resolve(testPath, './spa/f.yml')))
+    expect(existsSync(resolve(testPath, './my-ssr-project/f.yml')))
   }, 100000)
   test('ssr-with-js program can be init', async () => {
-    process.argv = ['node', 'index.js', '.', '--template=ssr-with-js']
+    process.argv = ['node', 'index.js', 'my-ssr-project', '--template=ssr-with-js']
     await init()
-    expect(require(resolve(testPath, './ssr-with-js/package.json')).name === 'ssr-with-js')
+    expect(require(resolve(testPath, './my-ssr-project/package.json')).name === 'ssr-with-js')
   }, 100000)
   test('ssr-with-ts program can be init', async () => {
-    process.argv = ['node', 'index.js', '.', '--template=ssr-with-ts']
+    process.argv = ['node', 'index.js', 'my-ssr-project', '--template=ssr-with-ts']
     await init()
-    expect(require(resolve(testPath, './ssr-with-js/package.json')).name === 'ssr-with-ts')
+    expect(require(resolve(testPath, './my-ssr-project/package.json')).name === 'ssr-with-ts')
   }, 100000)
   test('ssr-with-dva program can be init', async () => {
-    process.argv = ['node', 'index.js', '.', '--template=ssr-with-dva']
+    process.argv = ['node', 'index.js', 'my-ssr-project', '--template=ssr-with-dva']
     await init()
-    expect(require(resolve(testPath, './ssr-with-js/package.json')).name === 'ssr-with-dva')
+    expect(require(resolve(testPath, './my-ssr-project/package.json')).name === 'ssr-with-dva')
   }, 100000)
   test('ssr-with-antd program can be init', async () => {
-    process.argv = ['node', 'index.js', '.', '--template=ssr-with-antd']
+    process.argv = ['node', 'index.js', 'my-ssr-project', '--template=ssr-with-antd']
     await init()
-    expect(require(resolve(testPath, './ssr-with-js/package.json')).name === 'ssr-with-antd')
+    expect(require(resolve(testPath, './my-ssr-project/package.json')).name === 'ssr-with-antd')
   }, 100000)
   afterEach(() => {
     Shell.rm('-rf', testPath)
