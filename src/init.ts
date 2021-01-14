@@ -40,7 +40,7 @@ const init = async (options?: Options) => {
     return
   }
   if (templateMap[argv.template] === undefined) {
-    logGreen('未选择模版类型，默认创建 serverless-spa 应用')
+    logGreen('未选择模版类型，默认创建 serverless 应用')
   } else {
     logGreen(`${argv.template} 应用创建中...`)
   }
