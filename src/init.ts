@@ -23,7 +23,7 @@ const init = async (options?: Options) => {
   const cwd = process.cwd()
 
   const templateMap: TemplateMap = {
-    'spa': 'https://github.com/ykfe/ssr/tree/dev/example/spa',
+    'serverless-ssr-app': 'https://github.com/ykfe/ssr/tree/dev/example/serverless-ssr-app',
     'ssr-with-js': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-js',
     'ssr-with-ts': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-ts',
     'ssr-with-antd': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-antd',
@@ -44,7 +44,7 @@ const init = async (options?: Options) => {
   } else {
     logGreen(`${argv.template} 应用创建中...`)
   }
-  const template: string = argv.template || 'spa'
+  const template: string = argv.template || 'serverless-ssr-app'
   const dir = templateMap[template]
   await dclone({
     dir
