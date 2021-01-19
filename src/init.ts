@@ -23,7 +23,7 @@ const init = async (options?: Options) => {
   const cwd = process.cwd()
 
   const templateMap: TemplateMap = {
-    'serverless-ssr-app': 'https://github.com/ykfe/ssr/tree/dev/example/serverless-ssr-app',
+    'serverless-react-ssr': 'https://github.com/ykfe/ssr/tree/dev/example/serverless-react-ssr',
     'ssr-with-js': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-js',
     'ssr-with-ts': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-ts',
     'ssr-with-antd': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-antd',
@@ -40,11 +40,11 @@ const init = async (options?: Options) => {
     return
   }
   if (templateMap[argv.template] === undefined) {
-    logGreen('未选择模版类型，默认创建 serverless 应用')
+    logGreen('未选择模版类型，默认创建 serverless react ssr 应用')
   } else {
     logGreen(`${argv.template} 应用创建中...`)
   }
-  const template: string = argv.template || 'serverless-ssr-app'
+  const template: string = argv.template || 'serverless-react-ssr'
   const dir = templateMap[template]
   await dclone({
     dir
