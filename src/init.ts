@@ -23,7 +23,11 @@ const init = async (options?: Options) => {
   const cwd = process.cwd()
 
   const templateMap: TemplateMap = {
+    'spa': 'https://github.com/ykfe/ssr/tree/dev/example/serverless-react-ssr',
     'serverless-react-ssr': 'https://github.com/ykfe/ssr/tree/dev/example/serverless-react-ssr',
+    'serverless-vue-ssr': 'https://github.com/ykfe/ssr/tree/dev/example/serverless-vue-ssr',
+    'midway-react-ssr': 'https://github.com/ykfe/ssr/tree/dev/example/midway-react-ssr',
+    'midway-vue-ssr': 'https://github.com/ykfe/ssr/tree/dev/example/midway-vue-ssr',
     'ssr-with-js': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-js',
     'ssr-with-ts': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-ts',
     'ssr-with-antd': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-antd',
