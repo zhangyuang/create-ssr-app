@@ -15,17 +15,20 @@ Fast create an server-side-render app contains both [serverless ssr](https://git
 可创建 Serverless-Side-Render 应用 或者 传统的 Node.js Server-Side-Render 应用 即 [egg-react-ssr](https://github.com/ykfe/egg-react-ssr/) 
 
 ```js
-const templateMap: TemplateMap = {
-  'spa': 'https://github.com/ykfe/ssr/tree/dev/example/spa', // 默认创建 serverless-ssr 应用
-  'ssr-with-js': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-js',
-  'ssr-with-ts': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-ts',
-  'ssr-with-antd': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-antd',
-  'ssr-with-dva': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-dva'
-}
+  const templateMap: TemplateMap = {
+    'serverless-react-ssr': 'https://github.com/ykfe/ssr/tree/dev/example/serverless-react-ssr',
+    'serverless-vue-ssr': 'https://github.com/ykfe/ssr/tree/dev/example/serverless-vue-ssr',
+    'midway-react-ssr': 'https://github.com/ykfe/ssr/tree/dev/example/midway-react-ssr',
+    'midway-vue-ssr': 'https://github.com/ykfe/ssr/tree/dev/example/midway-vue-ssr',
+    'ssr-with-js': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-js',
+    'ssr-with-ts': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-ts',
+    'ssr-with-antd': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-antd',
+    'ssr-with-dva': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-dva'
+  }
 ```
 
 ```bash
-$ npm init ssr-app my-ssr-project --template=spa
+$ npm init ssr-app my-ssr-project --template=serverless-react-ssr
 $ cd my-ssr-project
 $ npm install
 $ npm start
