@@ -45,12 +45,14 @@ const init = async (options?: Options) => {
     logRed(`${targetDir}文件夹已存在，请先删除`)
     return
   }
+  let template: string = 'serverless-react-ssr'
   if (templateMap[argv.template] === undefined) {
     logGreen('未选择模版类型，默认创建 serverless react ssr 应用')
+    template = 'serverless-react-ssr'
   } else {
     logGreen(`${argv.template} 应用创建中...`)
+    template = argv.template
   }
-  const template: string = argv.template || 'serverless-react-ssr'
   const dir = templateMap[template]
   await dclone({
     dir
