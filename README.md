@@ -15,9 +15,10 @@ Fast create an server-side-render app contains both [serverless ssr](https://git
 可创建 Serverless-Side-Render 应用 或者 传统的 Node.js Server-Side-Render 应用 即 [egg-react-ssr](https://github.com/ykfe/egg-react-ssr/) 
 
 ```js
-  const templateMap: TemplateMap = {
-    'serverless-react-ssr': 'https://github.com/ykfe/ssr/tree/dev/example/serverless-react-ssr',
-    'serverless-vue-ssr': 'https://github.com/ykfe/ssr/tree/dev/example/serverless-vue-ssr',
+   const templateMap: TemplateMap = {
+    'spa': 'https://github.com/ykfe/ssr/tree/dev/example/midway-react-ssr',
+    'serverless-react-ssr': 'https://github.com/ykfe/ssr/tree/dev/example/midway-react-ssr',
+    'serverless-vue-ssr': 'https://github.com/ykfe/ssr/tree/dev/example/midway-vue-ssr',
     'midway-react-ssr': 'https://github.com/ykfe/ssr/tree/dev/example/midway-react-ssr',
     'midway-vue-ssr': 'https://github.com/ykfe/ssr/tree/dev/example/midway-vue-ssr',
     'nestjs-react-ssr': 'https://github.com/ykfe/ssr/tree/dev/example/nestjs-react-ssr',

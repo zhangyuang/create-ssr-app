@@ -57,6 +57,12 @@ const init = async (options?: Options) => {
   await dclone({
     dir
   })
+  if (template === 'serverless-react-ssr') {
+    template = 'midway-react-ssr'
+  }
+  if (template === 'serverless-vue-ssr') {
+    template = 'midway-vue-ssr'
+  }
   Shell.mv(`${join(cwd, `./example/${template}`)}`, `${join(cwd, `./${targetDir}`)}`)
   Shell.rm('-rf', `${join(cwd, './example')}`)
   console.log(`  cd ${targetDir}`)
