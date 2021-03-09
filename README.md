@@ -32,6 +32,7 @@ Fast create an server-side-render app contains both [serverless ssr](https://git
 
 ```bash
 $ npm init ssr-app my-ssr-project --template=serverless-react-ssr
+$ npm init ssr-app my-ssr-project -- --template=midway-react-ssr # when Node.js >= 15
 $ cd my-ssr-project
 $ npm install
 $ npm start
