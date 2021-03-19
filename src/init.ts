@@ -49,6 +49,8 @@ const init = async (options?: Options) => {
   }
   let template: string = 'serverless-react-ssr'
   if (templateMap[argv.template] === undefined) {
+    logGreen('未选择模版类型，可能是由于您使用 Node.js version >=15')
+    logGreen('若 Node.js version >=15 需使用 npm init ssr-app my-ssr-project -- --template=midway-react-ssr 的形式来创建应用')
     logGreen('未选择模版类型，默认创建 serverless react ssr 应用')
     template = 'serverless-react-ssr'
   } else {
