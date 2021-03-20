@@ -1,5 +1,7 @@
 import * as fs from 'fs'
 import { join } from 'path'
+import { exec } from 'child_process'
+import { promisify } from 'util'
 import * as process from 'process'
 import * as Shell from 'shelljs'
 import { dclone } from 'dclone'
@@ -47,10 +49,12 @@ const init = async (options?: Options) => {
     logRed(`${targetDir}文件夹已存在，请先删除`)
     return
   }
-  let template: string = 'serverless-react-ssr'
+  let template: string = options?.template || 'serverless-react-ssr'
   if (templateMap[argv.template] === undefined) {
-    logGreen('未选择模版类型，可能是由于您使用 Node.js version >=15')
-    logGreen('若 Node.js version >=15 需使用 npm init ssr-app my-ssr-project -- --template=midway-react-ssr 的形式来创建应用')
+    const { stdout } = await promisify(exec)('node -v')
+    if (stdout.startsWith('v15')) {
+      logGreen('获取 template 参数失败，若 Node.js version >=15 需使用 npm init ssr-app my-ssr-project -- --template=midway-react-ssr 的形式来创建应用')
+    }
     logGreen('未选择模版类型，默认创建 serverless react ssr 应用')
     template = 'serverless-react-ssr'
   } else {
