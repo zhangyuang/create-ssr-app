@@ -54,6 +54,11 @@ const init = async (options?: Options) => {
     const { stdout } = await promisify(exec)('node -v')
     if (stdout.startsWith('v15')) {
       logGreen('获取 template 参数失败，若 Node.js version >=15 需使用 npm init ssr-app my-ssr-project -- --template=midway-react-ssr 的形式来创建应用')
+    } else {
+      const { stdout } = await promisify(exec)('npm -v')
+      if (stdout.startsWith('7')) {
+        logGreen('获取 template 参数失败，若 npm version >=7 需使用 npm init ssr-app my-ssr-project -- --template=midway-react-ssr 的形式来创建应用')
+      }
     }
     logGreen('未选择模版类型，默认创建 serverless react ssr 应用')
     template = 'serverless-react-ssr'
