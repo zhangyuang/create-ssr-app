@@ -41,7 +41,7 @@ const init = async (options?: Options) => {
     'ssr-with-dva': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-dva'
   }
   if (!argv._[0]) {
-    logRed('未指定项目名称 请使用格式 npm init ssr-app <project-name>')
+    logRed('未指定项目名称 请使用格式 npm init ssr-app')
     return
   }
   const targetDir = argv._[0]
@@ -50,7 +50,7 @@ const init = async (options?: Options) => {
     logRed(`${targetDir}文件夹已存在，请先删除`)
     return
   }
-  let template = options?.template || argv.template
+  let template = options?.template ?? argv.template
   if (!template) {
     const { stdout } = await promisify(exec)('node -v')
     if (stdout.startsWith('v15') || stdout.startsWith('v16')) {
