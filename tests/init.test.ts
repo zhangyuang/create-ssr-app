@@ -22,11 +22,6 @@ describe('test create', () => {
     Shell.mkdir(testPath)
   })
   test('serverless-spa program can be init', async () => {
-    process.argv = ['node', 'index.js', 'my-ssr-project']
-    await init()
-    expect(existsSync(resolve(testPath, './my-ssr-project/f.yml')))
-  }, 100000)
-  test('serverless-spa program can be init', async () => {
     process.argv = ['node', 'index.js', 'my-ssr-project', '--template=spa']
     await init()
     expect(existsSync(resolve(testPath, './my-ssr-project/f.yml')))
