@@ -10,9 +10,28 @@
 
 Fast create an server-side-render app contains both [serverless ssr](https://github.com/ykfe/ssr) and [egg-react-ssr](https://github.com/ykfe/egg-react-ssr/) realized by [dclone](https://github.com/ykfe/dclone)
 
-## Template list
+`create-ssr-app` 用于快速创建 `ssr` 服务端渲染应用。可创建基于 [ssr 框架](https://github.com/ykfe/ssr) 的开箱即用的服务端渲染应用，以及 [egg-react-ssr](https://github.com/ykfe/egg-react-ssr/) 骨架类型的应用。如无特殊需求，我们推荐创建基于 [ssr 框架](https://github.com/ykfe/ssr) 的开箱即用的服务端渲染应用
 
-可创建 Serverless-Side-Render 应用 或者 传统的 Node.js Server-Side-Render 应用 即 [egg-react-ssr](https://github.com/ykfe/egg-react-ssr/) 
+## 创建应用
+
+我们提供了两种方式来快速创建应用
+
+### 手动选择(推荐使用)
+
+```bash
+$ npm init ssr-app my-ssr-project
+$ cd my-ssr-project
+$ npm install
+$ npm start
+```
+
+![](https://res.wx.qq.com/op_res/EwhvVPNOBCxrgWbWeqeeKbpdFC8KA7riyvB8UJ4eTYt25oBm_D4yX3OtJkV2g-9E1rr1iFCQgikOaDyM1YXr1g)
+
+手动选择需要创建的应用类型 基于 [ssr 框架](https://github.com/ykfe/ssr)
+
+### 命令行指定模版类型
+
+通过该方式来手动制定需要创建的模版类型。同时支持创建基于 [ssr 框架](https://github.com/ykfe/ssr) 的开箱即用的服务端渲染应用，以及[egg-react-ssr](https://github.com/ykfe/egg-react-ssr/) 骨架类型的应用
 
 ```js
    const templateMap: TemplateMap = {
