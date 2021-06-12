@@ -3,6 +3,7 @@ import { join } from 'path'
 import { exec } from 'child_process'
 import { promisify } from 'util'
 import * as process from 'process'
+import * as inquirer from 'inquirer'
 import * as Shell from 'shelljs'
 import { dclone } from 'dclone'
 
@@ -25,7 +26,7 @@ const init = async (options?: Options) => {
   const cwd = process.cwd()
 
   const templateMap: TemplateMap = {
-    'spa': 'https://github.com/ykfe/ssr/tree/dev/example/midway-react-ssr',
+    spa: 'https://github.com/ykfe/ssr/tree/dev/example/midway-react-ssr',
     'serverless-react-ssr': 'https://github.com/ykfe/ssr/tree/dev/example/midway-react-ssr',
     'serverless-vue-ssr': 'https://github.com/ykfe/ssr/tree/dev/example/midway-vue-ssr',
     'midway-react-ssr': 'https://github.com/ykfe/ssr/tree/dev/example/midway-react-ssr',
@@ -49,23 +50,35 @@ const init = async (options?: Options) => {
     logRed(`${targetDir}文件夹已存在，请先删除`)
     return
   }
-  let template: string = options?.template || 'serverless-react-ssr'
-  if (templateMap[argv.template] === undefined) {
+  let template = options?.template || argv.template
+  if (!template) {
     const { stdout } = await promisify(exec)('node -v')
-    if (stdout.startsWith('v15')) {
-      logGreen('获取 template 参数失败，若 Node.js version >=15 需使用 npm init ssr-app my-ssr-project -- --template=midway-react-ssr 的形式来创建应用')
+    if (stdout.startsWith('v15') || stdout.startsWith('v16')) {
+      logGreen('获取 template 参数失败，请手动选择模版类型，若 Node.js version >=15 需使用 npm init ssr-app my-ssr-project -- --template=midway-react-ssr 的形式来创建应用')
     } else {
       const { stdout } = await promisify(exec)('npm -v')
       if (stdout.startsWith('7')) {
-        logGreen('获取 template 参数失败，若 npm version >=7 需使用 npm init ssr-app my-ssr-project -- --template=midway-react-ssr 的形式来创建应用')
+        logGreen('获取 template 参数失败，请手动选择模版类型，若 npm version >=7 需使用 npm init ssr-app my-ssr-project -- --template=midway-react-ssr 的形式来创建应用')
       }
     }
-    logGreen('未选择模版类型，默认创建 serverless react ssr 应用')
-    template = 'serverless-react-ssr'
-  } else {
-    logGreen(`${argv.template} 应用创建中...`)
-    template = argv.template
+    const answers = await inquirer.prompt([{
+      type: 'list',
+      message: '模版类型',
+      name: 'template',
+      default: 'midway-vue3-ssr',
+      choices: [
+        'midway-vue3-ssr',
+        'midway-vue-ssr',
+        'midway-react-ssr',
+        'nestjs-vue3-ssr',
+        'nestjs-vue-ssr',
+        'nestjs-react-ssr'
+      ]
+    }])
+    template = answers.template || 'midway-vue3-ssr'
   }
+
+  logGreen(`${template} 应用创建中...`)
   const dir = templateMap[template]
   await dclone({
     dir
@@ -79,8 +92,8 @@ const init = async (options?: Options) => {
   Shell.mv(`${join(cwd, `./example/${template}`)}`, `${join(cwd, `./${targetDir}`)}`)
   Shell.rm('-rf', `${join(cwd, './example')}`)
   console.log(`  cd ${targetDir}`)
-  console.log(`  npm install (or \`yarn\`)`)
-  console.log(`  npm start (or \`yarn start\`)`)
+  console.log('  npm install (or `yarn`)')
+  console.log('  npm start (or `yarn start`)')
   console.log()
 }
 
