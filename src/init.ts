@@ -75,7 +75,7 @@ const init = async (options?: Options) => {
         'nestjs-react-ssr'
       ]
     }])
-    template = answers.template || 'midway-vue3-ssr'
+    template = answers.template ?? 'midway-vue3-ssr'
   }
 
   logGreen(`${template} 应用创建中...`)
