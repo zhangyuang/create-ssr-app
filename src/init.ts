@@ -53,7 +53,7 @@ const init = async (options?: Options) => {
     const answers = await prompts({
       type: 'select',
       name: 'template',
-      message: '请选择模版类型',
+      message: 'Select a framework:',
       choices: [
         { title: 'midway-vue3-ssr', value: 'midway-vue3-ssr' },
         { title: 'midway-react-ssr', value: 'midway-react-ssr' },
