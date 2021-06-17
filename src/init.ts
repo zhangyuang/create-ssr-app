@@ -1,7 +1,5 @@
 import * as fs from 'fs'
 import { join } from 'path'
-import { exec } from 'child_process'
-import { promisify } from 'util'
 import * as process from 'process'
 import * as Shell from 'shelljs'
 import { dclone } from 'dclone'
@@ -52,15 +50,6 @@ const init = async (options?: Options) => {
   }
   let template = options?.template ?? argv.template
   if (!template) {
-    const { stdout } = await promisify(exec)('node -v')
-    if (stdout.startsWith('v15') || stdout.startsWith('v16')) {
-      logGreen('获取 template 参数失败，请手动选择模版类型，若 Node.js version >=15 需使用 npm init ssr-app my-ssr-project -- --template=midway-react-ssr 的形式来创建应用')
-    } else {
-      const { stdout } = await promisify(exec)('npm -v')
-      if (stdout.startsWith('7')) {
-        logGreen('获取 template 参数失败，请手动选择模版类型，若 npm version >=7 需使用 npm init ssr-app my-ssr-project -- --template=midway-react-ssr 的形式来创建应用')
-      }
-    }
     const answers = await prompts({
       type: 'select',
       name: 'template',
