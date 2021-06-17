@@ -74,7 +74,11 @@ const init = async (options?: Options) => {
         { title: 'nestjs-vue-ssr', value: 'nestjs-vue-ssr' }
       ]
     })
-    template = answers.template ?? 'midway-vue3-ssr'
+    template = answers.template
+    if (!template) {
+      // 如果使用了 ctrl + c 退出选择，则退出进程
+      process.exit(0)
+    }
   }
 
   logGreen(`${template} 应用创建中...`)
