@@ -3,10 +3,10 @@ import { join } from 'path'
 import { exec } from 'child_process'
 import { promisify } from 'util'
 import * as process from 'process'
-import * as inquirer from 'inquirer'
 import * as Shell from 'shelljs'
 import { dclone } from 'dclone'
 
+const prompts = require('prompts')
 const logGreen = (text: string) => {
   console.log(`\x1B[32m ${text}`)
 }
@@ -61,20 +61,19 @@ const init = async (options?: Options) => {
         logGreen('获取 template 参数失败，请手动选择模版类型，若 npm version >=7 需使用 npm init ssr-app my-ssr-project -- --template=midway-react-ssr 的形式来创建应用')
       }
     }
-    const answers = await inquirer.prompt([{
-      type: 'list',
-      message: '模版类型',
+    const answers = await prompts({
+      type: 'select',
       name: 'template',
-      default: 'midway-vue3-ssr',
+      message: '请选择模版类型',
       choices: [
-        'midway-vue3-ssr',
-        'midway-vue-ssr',
-        'midway-react-ssr',
-        'nestjs-vue3-ssr',
-        'nestjs-vue-ssr',
-        'nestjs-react-ssr'
+        { title: 'midway-vue3-ssr', value: 'midway-vue3-ssr' },
+        { title: 'midway-react-ssr', value: 'midway-react-ssr' },
+        { title: 'midway-vue-ssr', value: 'midway-vue-ssr' },
+        { title: 'nestjs-vue3-ssr', value: 'nestjs-vue3-ssr' },
+        { title: 'nestjs-react-ssr', value: 'nestjs-react-ssr' },
+        { title: 'nestjs-vue-ssr', value: 'nestjs-vue-ssr' }
       ]
-    }])
+    })
     template = answers.template ?? 'midway-vue3-ssr'
   }
 
