@@ -25,7 +25,7 @@ $ npm install
 $ npm start
 ```
 
-![](https://res.wx.qq.com/op_res/EwhvVPNOBCxrgWbWeqeeKbpdFC8KA7riyvB8UJ4eTYt25oBm_D4yX3OtJkV2g-9E1rr1iFCQgikOaDyM1YXr1g)
+![](http://doc.ssr-fc.com/images/resume2.svg)
 
 手动选择需要创建的应用类型 基于 [ssr 框架](https://github.com/ykfe/ssr)
 
@@ -53,7 +53,7 @@ $ npm start
 
 ```bash
 $ npm init ssr-app my-ssr-project --template=serverless-react-ssr
-$ npm init ssr-app my-ssr-project -- --template=midway-react-ssr # when Node.js >= 15
+$ npm init ssr-app my-ssr-project -- --template=midway-react-ssr # when Node.js >= 15 || NPM >= 7
 $ cd my-ssr-project
 $ npm install
 $ npm start
