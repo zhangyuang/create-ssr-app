@@ -73,12 +73,13 @@ const init = async (options?: Options) => {
         { title: 'nestjs-react-ssr', value: 'nestjs-react-ssr' },
         { title: 'nestjs-vue-ssr', value: 'nestjs-vue-ssr' }
       ]
+    }, {
+      onCancel: () => {
+        logRed('退出选择')
+        process.exit(0)
+      }
     })
     template = answers.template
-    if (!template) {
-      // 如果使用了 ctrl + c 退出选择，则退出进程
-      process.exit(0)
-    }
   }
 
   logGreen(`${template} 应用创建中...`)
