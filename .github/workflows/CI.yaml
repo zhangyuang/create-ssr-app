@@ -39,7 +39,6 @@ jobs:
         uses: actions/checkout@master
         with:
           repository:  git@github.com:ykfe/ssr.git
-        run: ls
           # token: ${{ secrets.my_pat }}
       - name: Install dependencies
         run: |
