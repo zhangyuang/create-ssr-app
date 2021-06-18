@@ -6,9 +6,9 @@ name: CI
 # events but only for the dev branch
 on:
   push:
-    branches: [dev, master]
+    branches: [dev, master, 'feat/*']
   pull_request:
-    branches: [dev, master]
+    branches: [dev, master, 'feat/*']
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -35,6 +35,12 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/package.json') }}
           restore-keys: |
             ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-
+      - name: Check out my other private repo
+        uses: actions/checkout@master
+        with:
+          repository: ykfe/ssr
+          path: ssr
+          ref: dev
       - name: Install dependencies
         run: |
           yarn

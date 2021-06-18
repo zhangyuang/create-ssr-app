@@ -7,3 +7,4 @@ coverage
 temporary
 .git_backup
 .eslintcache
+ssr
