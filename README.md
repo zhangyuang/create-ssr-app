@@ -25,7 +25,7 @@ $ npm install
 $ npm start
 ```
 
-![](http://doc.ssr-fc.com/images/resume2.svg)
+![](http://doc.ssr-fc.com/images/resume3.svg)
 
 手动选择需要创建的应用类型 基于 [ssr 框架](https://github.com/ykfe/ssr)
 
