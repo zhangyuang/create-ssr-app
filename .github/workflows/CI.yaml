@@ -35,12 +35,6 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/package.json') }}
           restore-keys: |
             ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-
-      - name: Check out my other private repo
-        uses: actions/checkout@master
-        with:
-          repository: ykfe/ssr
-          path: ssr
-          ref: dev
       - name: Install dependencies
         run: |
           yarn
@@ -49,7 +43,7 @@ jobs:
     strategy:
         matrix:
           os: [ubuntu-latest, macos-latest, windows-latest]
-          node: ["12", "13", "14"]
+          node: ["12", "14"]
     name: test - ${{ matrix.os }} - ${{ matrix.node }}
     runs-on: ${{ matrix.os }}
     steps:
@@ -71,7 +65,7 @@ jobs:
     strategy:
         matrix:
           os: [ubuntu-latest, macos-latest, windows-latest]
-          node: ["12", "13", "14"]
+          node: ["12", "14"]
     name: lint - ${{ matrix.os }} - ${{ matrix.node }}
     runs-on: ${{ matrix.os }}
     steps:
@@ -93,7 +87,7 @@ jobs:
     strategy:
         matrix:
           os: [ubuntu-latest, macos-latest, windows-latest]
-          node: ["12", "13", "14"]
+          node: ["12", "14"]
     name: build - ${{ matrix.os }} - ${{ matrix.node }}
     runs-on: ${{ matrix.os }}
     steps:
@@ -131,8 +125,15 @@ jobs:
         with:
           name: build_output
           path: bin
+      - name: Check out my other private repo
+        uses: actions/checkout@master
+        with:
+          repository: ykfe/ssr
+          path: ssr
+          ref: dev
       - name: Publish
         run: |
+          ls
           if git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+$";
           then
             echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
