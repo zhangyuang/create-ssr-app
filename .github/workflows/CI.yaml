@@ -43,7 +43,6 @@ jobs:
           ref: dev
       - name: Install dependencies
         run: |
-          ls
           yarn
   test:
     needs: install
