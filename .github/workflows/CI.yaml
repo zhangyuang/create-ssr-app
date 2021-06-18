@@ -38,7 +38,9 @@ jobs:
       - name: Check out my other private repo
         uses: actions/checkout@master
         with:
-          repository:  git@github.com:ykfe/ssr.git
+          repository: ykfe/ssr
+          path: ssr
+
           # token: ${{ secrets.my_pat }}
       - name: Install dependencies
         run: |
