@@ -89,7 +89,7 @@ const init = async (options?: Options) => {
     Shell.mv(`${join(cwd, `./example/${template}`)}`, `${join(cwd, `./${targetDir}`)}`)
     Shell.rm('-rf', `${join(cwd, './example')}`)
   } else {
-    Shell.mv(`${join(__dirname, `../ssr/example/${template}`)}`, `${join(cwd, `./${targetDir}`)}`)
+    Shell.mv(`${join(__dirname, `../example/${template}`)}`, `${join(cwd, `./${targetDir}`)}`)
   }
   logGreen(`${template} 应用创建完成`)
 
