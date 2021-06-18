@@ -41,10 +41,9 @@ jobs:
           repository: ykfe/ssr
           path: ssr
           ref: dev
-          # token: ${{ secrets.my_pat }}
       - name: Install dependencies
         run: |
-          cat ssr/package.json
+          ls
           yarn
   test:
     needs: install

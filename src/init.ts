@@ -22,7 +22,7 @@ interface Options {
 const init = async (options?: Options) => {
   const argv = require('minimist')(process.argv.slice(2))
   const cwd = process.cwd()
-
+  let isSSR = false // 当前创建的是 ssr 框架的模版
   const templateMap: TemplateMap = {
     spa: 'https://github.com/ykfe/ssr/tree/dev/example/midway-react-ssr',
     'serverless-react-ssr': 'https://github.com/ykfe/ssr/tree/dev/example/midway-react-ssr',
@@ -68,14 +68,17 @@ const init = async (options?: Options) => {
         process.exit(0)
       }
     })
+    isSSR = true
     template = answers.template
   }
 
   logGreen(`${template} 应用创建中...`)
   const dir = templateMap[template]
-  await dclone({
-    dir
-  })
+  if (!isSSR) {
+    await dclone({
+      dir
+    })
+  }
   if (template === 'serverless-react-ssr') {
     template = 'midway-react-ssr'
   }
