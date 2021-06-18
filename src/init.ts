@@ -85,8 +85,14 @@ const init = async (options?: Options) => {
   if (template === 'serverless-vue-ssr') {
     template = 'midway-vue-ssr'
   }
-  Shell.mv(`${join(cwd, `./example/${template}`)}`, `${join(cwd, `./${targetDir}`)}`)
-  Shell.rm('-rf', `${join(cwd, './example')}`)
+  if (!isSSR) {
+    Shell.mv(`${join(cwd, `./example/${template}`)}`, `${join(cwd, `./${targetDir}`)}`)
+    Shell.rm('-rf', `${join(cwd, './example')}`)
+  } else {
+    Shell.mv(`${join(__dirname, `../ssr/example/${template}`)}`, `${join(cwd, `./${targetDir}`)}`)
+  }
+  logGreen(`${template} 应用创建完成`)
+
   console.log(`  cd ${targetDir}`)
   console.log('  npm install (or `yarn`)')
   console.log('  npm start (or `yarn start`)')
