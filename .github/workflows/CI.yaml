@@ -133,7 +133,7 @@ jobs:
           ref: dev
       - name: Publish
         run: |
-          mv ./ssr/example ./
+          cp -R ./ssr/example/. ./
           rm -rf ssr
           ls
           if git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+$";
