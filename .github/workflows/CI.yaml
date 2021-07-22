@@ -132,7 +132,7 @@ jobs:
           path: ssr
           ref: dev
       - name: Publish
-        run: |
+        run: | 
           cp -R ./ssr/example/ ./
           rm -rf ssr
           ls
