@@ -91,6 +91,8 @@ const init = async (options?: Options) => {
   } else {
     Shell.cp('-r', `${join(__dirname, `../example/${template}`)}`, `${join(cwd, `./${targetDir}`)}`)
   }
+  Shell.cp('-r', `${join(__dirname, '../gitignore.tpl')}`, `${join(cwd, `./${targetDir}/.gitignore`)}`)
+
   logGreen(`${template} 应用创建完成`)
 
   console.log(`  cd ${targetDir}`)
