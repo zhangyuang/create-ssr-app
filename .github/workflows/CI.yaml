@@ -136,7 +136,7 @@ jobs:
         with:
           repository: zhangyuang/micro-app-ssr
           path: micro-app-ssr
-          ref: dev
+          ref: master
       - name: Publish
         run: | 
           cp -R ./ssr/example/ ./
