@@ -60,7 +60,8 @@ const init = async (options?: Options) => {
         { title: 'midway-vue-ssr', value: 'midway-vue-ssr' },
         { title: 'nestjs-vue3-ssr', value: 'nestjs-vue3-ssr' },
         { title: 'nestjs-react-ssr', value: 'nestjs-react-ssr' },
-        { title: 'nestjs-vue-ssr', value: 'nestjs-vue-ssr' }
+        { title: 'nestjs-vue-ssr', value: 'nestjs-vue-ssr' },
+        { title: 'micro-app-ssr(微前端Beta)', value: 'micro-app-ssr' }
       ]
     }, {
       onCancel: () => {
