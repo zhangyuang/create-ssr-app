@@ -142,6 +142,7 @@ jobs:
           cp -R ./ssr/example/ ./
           cp -R ./micro-app-ssr ./example
           rm -rf ssr
+          rm -rf ./micro-app-ssr
           ls
           if git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+$";
           then
