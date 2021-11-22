@@ -128,7 +128,7 @@ jobs:
       - name: Check out my other private repo
         uses: actions/checkout@master
         with:
-          repository: ykfe/ssr
+          repository: zhangyuang/ssr
           path: ssr
           ref: dev
       - name: Check out my other private repo
