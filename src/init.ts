@@ -33,10 +33,10 @@ const init = async (options?: Options) => {
     'nestjs-react-ssr': 'https://github.com/zhangyuang/ssr/tree/dev/example/nestjs-react-ssr',
     'nestjs-vue-ssr': 'https://github.com/zhangyuang/ssr/tree/dev/example/nestjs-vue-ssr',
     'nestjs-vue3-ssr': 'https://github.com/zhangyuang/ssr/tree/dev/example/nestjs-vue3-ssr',
-    'ssr-with-js': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-js',
-    'ssr-with-ts': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-ts',
-    'ssr-with-antd': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-antd',
-    'ssr-with-dva': 'https://github.com/ykfe/egg-react-ssr/tree/dev/example/ssr-with-dva'
+    'ssr-with-js': 'https://github.com/zhangyuang/egg-react-ssr/tree/dev/example/ssr-with-js',
+    'ssr-with-ts': 'https://github.com/zhangyuang/egg-react-ssr/tree/dev/example/ssr-with-ts',
+    'ssr-with-antd': 'https://github.com/zhangyuang/egg-react-ssr/tree/dev/example/ssr-with-antd',
+    'ssr-with-dva': 'https://github.com/zhangyuang/egg-react-ssr/tree/dev/example/ssr-with-dva'
   }
   if (!argv._[0]) {
     logRed('未指定项目名称 请使用格式 npm init ssr-app')
