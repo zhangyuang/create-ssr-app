@@ -55,11 +55,11 @@ const init = async (options?: Options) => {
       name: 'template',
       message: 'Select a framework:',
       choices: [
-        { title: 'midway-vue3-ssr', value: 'midway-vue3-ssr' },
-        { title: 'midway-react-ssr', value: 'midway-react-ssr' },
+        { title: 'midway-vue3-ssr(支持 Vite)', value: 'midway-vue3-ssr' },
+        { title: 'midway-react-ssr(支持 Vite)', value: 'midway-react-ssr' },
         { title: 'midway-vue-ssr', value: 'midway-vue-ssr' },
-        { title: 'nestjs-vue3-ssr', value: 'nestjs-vue3-ssr' },
-        { title: 'nestjs-react-ssr', value: 'nestjs-react-ssr' },
+        { title: 'nestjs-vue3-ssr(支持 Vite)', value: 'nestjs-vue3-ssr' },
+        { title: 'nestjs-react-ssr(支持 Vite)', value: 'nestjs-react-ssr' },
         { title: 'nestjs-vue-ssr', value: 'nestjs-vue-ssr' },
         { title: 'micro-app-ssr(微前端Beta)', value: 'micro-app-ssr' }
       ]
