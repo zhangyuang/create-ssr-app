@@ -45,7 +45,7 @@ const init = async (options?: Options) => {
   const targetDir = argv._[0]
 
   if (fs.existsSync(targetDir)) {
-    logRed(`${targetDir}文件夹已存在，请先删除`)
+    logRed(`${targetDir} already existed, please delete it`)
     return
   }
   let template = options?.template ?? argv.template
@@ -55,11 +55,11 @@ const init = async (options?: Options) => {
       name: 'template',
       message: 'Select a framework:',
       choices: [
-        { title: 'midway-vue3-ssr(支持 Vite)', value: 'midway-vue3-ssr' },
-        { title: 'midway-react-ssr(支持 Vite)', value: 'midway-react-ssr' },
+        { title: 'midway-vue3-ssr(Support Vite and Script Setup)', value: 'midway-vue3-ssr' },
+        { title: 'midway-react-ssr(Support Vite)', value: 'midway-react-ssr' },
         { title: 'midway-vue-ssr', value: 'midway-vue-ssr' },
-        { title: 'nestjs-vue3-ssr(支持 Vite)', value: 'nestjs-vue3-ssr' },
-        { title: 'nestjs-react-ssr(支持 Vite)', value: 'nestjs-react-ssr' },
+        { title: 'nestjs-vue3-ssr(Support Vite and Script Setup)', value: 'nestjs-vue3-ssr' },
+        { title: 'nestjs-react-ssr(Support Vite)', value: 'nestjs-react-ssr' },
         { title: 'nestjs-vue-ssr', value: 'nestjs-vue-ssr' },
         { title: 'micro-app-ssr(微前端Beta)', value: 'micro-app-ssr' }
       ]
