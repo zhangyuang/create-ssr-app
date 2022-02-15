@@ -73,7 +73,7 @@ const init = async (options?: Options) => {
     template = answers.template
   }
 
-  logGreen(`${template} 应用创建中...`)
+  logGreen(`${template} is creating...`)
   const dir = templateMap[template]
   if (!isSSR) {
     await dclone({
@@ -94,7 +94,7 @@ const init = async (options?: Options) => {
   }
   Shell.cp('-r', `${join(__dirname, '../gitignore.tpl')}`, `${join(cwd, `./${targetDir}/.gitignore`)}`)
 
-  logGreen(`${template} 应用创建完成`)
+  logGreen(`${template} has created succeed `)
 
   console.log(`  cd ${targetDir}`)
   console.log('  npm install (or `yarn`)')
