@@ -55,13 +55,13 @@ const init = async (options?: Options) => {
       name: 'template',
       message: 'Select a framework:',
       choices: [
-        { title: 'midway-vue3-ssr(Support Vite and Script Setup)', value: 'midway-vue3-ssr' },
-        { title: 'midway-react-ssr(Support Vite)', value: 'midway-react-ssr' },
-        { title: 'midway-vue-ssr', value: 'midway-vue-ssr' },
         { title: 'nestjs-vue3-ssr(Support Vite and Script Setup)', value: 'nestjs-vue3-ssr' },
         { title: 'nestjs-react-ssr(Support Vite)', value: 'nestjs-react-ssr' },
         { title: 'nestjs-vue-ssr', value: 'nestjs-vue-ssr' },
-        { title: 'micro-app-ssr(微前端Beta)', value: 'micro-app-ssr' }
+        { title: 'midway-vue3-ssr(Support Vite and Script Setup)', value: 'midway-vue3-ssr' },
+        { title: 'midway-react-ssr(Support Vite)', value: 'midway-react-ssr' },
+        { title: 'midway-vue-ssr', value: 'midway-vue-ssr' },
+        { title: 'micro-app-ssr(micro-frontends + ssr)', value: 'micro-app-ssr' }
       ]
     }, {
       onCancel: () => {
