@@ -58,6 +58,7 @@ const init = async (options?: Options) => {
         { title: 'nestjs-vue3-ssr(Support Vite and Script Setup)', value: 'nestjs-vue3-ssr' },
         { title: 'nestjs-react-ssr(Support Vite)', value: 'nestjs-react-ssr' },
         { title: 'nestjs-vue-ssr', value: 'nestjs-vue-ssr' },
+        { title: 'nestjs-vue3-ssr-pinia(Support pinia)', value: 'nestjs-vue3-ssr-pinia' },
         { title: 'midway-vue3-ssr(Support Vite and Script Setup)', value: 'midway-vue3-ssr' },
         { title: 'midway-react-ssr(Support Vite)', value: 'midway-react-ssr' },
         { title: 'midway-vue-ssr', value: 'midway-vue-ssr' },
