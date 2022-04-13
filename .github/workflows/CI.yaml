@@ -140,7 +140,7 @@ jobs:
       - name: Check out my other private repo
         uses: actions/checkout@master
         with:
-          repository: zhangyuang/nestjs
+          repository: zhangyuang/nestjs-vue3-ssr-pinia
           path: nestjs-vue3-ssr-pinia
           ref: master
       - name: Publish
