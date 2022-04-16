@@ -1,6 +1,6 @@
 {
   "name": "create-ssr-app",
-  "version": "1.1.127",
+  "version": "1.1.128",
   "description": "Create Serverless SSR App",
   "main": "./bin/init.js",
   "scripts": {
