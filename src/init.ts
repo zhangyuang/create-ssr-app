@@ -1,4 +1,5 @@
 import * as fs from 'fs'
+import { promises } from 'fs'
 import { join } from 'path'
 import * as process from 'process'
 import * as Shell from 'shelljs'
@@ -88,8 +89,14 @@ const init = async (options?: Options) => {
     template = 'midway-vue-ssr'
   }
   if (!isSSR) {
-    Shell.cp('-r', `${join(cwd, `./example/${template}/.`)}`, `${join(cwd, `./${targetDir}`)}`)
+    Shell.cp('-r', `${join(cwd, `./example/${template}`)}`, `${join(cwd, `./${targetDir}`)}`)
     Shell.rm('-rf', `${join(cwd, './example')}`)
+    await promises.writeFile(`${join(cwd, `./${targetDir}/.npmrc`)}`, `# for pnpm mode
+    public-hoist-pattern[]=@babel/runtime
+    ${template.includes('nestjs') ? 'public-hoist-pattern[]=@types/express' : ''}
+    ${template.includes('vue3') ? 'public-hoist-pattern[]=pinia' : ''}
+    `
+    )
   } else {
     Shell.cp('-r', `${join(__dirname, `../example/${template}`)}`, `${join(cwd, `./${targetDir}`)}`)
   }
