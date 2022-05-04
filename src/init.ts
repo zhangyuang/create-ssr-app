@@ -88,7 +88,7 @@ const init = async (options?: Options) => {
     template = 'midway-vue-ssr'
   }
   if (!isSSR) {
-    Shell.cp('-r', `${join(cwd, `./example/${template}`)}`, `${join(cwd, `./${targetDir}`)}`)
+    Shell.cp('-r', `${join(cwd, `./example/${template}/.`)}`, `${join(cwd, `./${targetDir}`)}`)
     Shell.rm('-rf', `${join(cwd, './example')}`)
   } else {
     Shell.cp('-r', `${join(__dirname, `../example/${template}`)}`, `${join(cwd, `./${targetDir}`)}`)
