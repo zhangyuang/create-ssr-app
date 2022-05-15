@@ -13,6 +13,7 @@
     "strict": true,
     "module": "CommonJS",
     "target": "ES2018",
+    "skipLibCheck": true,
     "outDir": "./bin"
   },
   "include": [
