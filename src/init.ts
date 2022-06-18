@@ -93,10 +93,12 @@ const init = async (options?: Options) => {
     Shell.rm('-rf', `${join(cwd, './example')}`)
   } else {
     Shell.cp('-r', `${join(__dirname, `../example/${template}`)}`, `${join(cwd, `./${targetDir}`)}`)
-    await promises.writeFile(`${join(cwd, `./${targetDir}/.npmrc`)}`, `# for pnpm mode
+    await promises.writeFile(`${join(cwd, `./${targetDir}/.npmrc`)}`, `
+    # for pnpm mode
     public-hoist-pattern[]=@babel/runtime
     ${template.includes('nestjs') ? 'public-hoist-pattern[]=@types/express' : ''}
     ${template.includes('vue3') ? 'public-hoist-pattern[]=pinia' : ''}
+    public-hoist-pattern[]=ssr-serialize-javascript
     `
     )
   }
