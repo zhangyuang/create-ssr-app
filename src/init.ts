@@ -98,7 +98,7 @@ const init = async (options?: Options) => {
     public-hoist-pattern[]=@babel/runtime
     ${template.includes('nestjs') ? 'public-hoist-pattern[]=@types/express' : ''}
     ${template.includes('vue3') ? 'public-hoist-pattern[]=pinia' : ''}
-    public-hoist-pattern[]=ssr-serialize-javascript
+    public-hoist-pattern[]=ssr*
     `
     )
   }
