@@ -99,6 +99,7 @@ const init = async (options?: Options) => {
     ${template.includes('nestjs') ? 'public-hoist-pattern[]=@types/express' : ''}
     ${template.includes('vue3') ? 'public-hoist-pattern[]=pinia' : ''}
     public-hoist-pattern[]=ssr*
+    public-hoist-pattern[]=axios
     `
     )
   }
