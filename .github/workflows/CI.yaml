@@ -137,17 +137,11 @@ jobs:
           repository: zhangyuang/micro-app-ssr
           path: micro-app-ssr
           ref: master
-      - name: Check out my other private repo
-        uses: actions/checkout@master
-        with:
-          repository: zhangyuang/nestjs-vue3-ssr-pinia
-          path: nestjs-vue3-ssr-pinia
-          ref: master
+
       - name: Publish
         run: | 
           cp -R ./ssr/example/ ./
           cp -R ./micro-app-ssr ./example
-          cp -R ./nestjs-vue3-ssr-pinia ./example
           rm -rf ssr
           rm -rf ./micro-app-ssr
           rm -rf ./nestjs-vue3-ssr-pinia
