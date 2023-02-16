@@ -10,7 +10,6 @@
     "stripInternal": true,
     "pretty": true,
     "declaration": true,
-    "strict": true,
     "module": "CommonJS",
     "target": "ES2018",
     "skipLibCheck": true,
