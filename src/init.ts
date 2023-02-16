@@ -98,6 +98,7 @@ const init = async (options?: Options) => {
     public-hoist-pattern[]=@babel/runtime
     ${template.includes('nestjs') ? 'public-hoist-pattern[]=@types/express' : ''}
     ${template.includes('vue3') ? 'public-hoist-pattern[]=pinia' : ''}
+    ${template.includes('react') ? 'public-hoist-pattern[]=ssr-react-dom' : ''}
     public-hoist-pattern[]=ssr*
     public-hoist-pattern[]=axios
     `
