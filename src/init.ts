@@ -58,9 +58,11 @@ const init = async (options?: Options) => {
       choices: [
         { title: 'nestjs-vue3-ssr(Support Vite and Script Setup)', value: 'nestjs-vue3-ssr' },
         { title: 'nestjs-vue3-ssr-pinia(Support Pinia, Vite and Script Setup)', value: 'nestjs-vue3-ssr-pinia' },
+         { title: 'nestjs-react18-ssr(Support Vite)', value: 'nestjs-react18-ssr' },
         { title: 'nestjs-react-ssr(Support Vite)', value: 'nestjs-react-ssr' },
         { title: 'nestjs-vue-ssr', value: 'nestjs-vue-ssr' },
         { title: 'midway-vue3-ssr(Midawy3.0, Support Vite and Script Setup)', value: 'midway-vue3-ssr' },
+        { title: 'midway-react18-ssr(Midawy3.0, Support Vite)', value: 'midway-react18-ssr' },
         { title: 'midway-react-ssr(Midawy3.0, Support Vite)', value: 'midway-react-ssr' },
         { title: 'midway-vue-ssr(Midawy3.0)', value: 'midway-vue-ssr' },
         { title: 'micro-app-ssr(micro-frontends + ssr)', value: 'micro-app-ssr' }
