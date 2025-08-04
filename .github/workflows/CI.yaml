@@ -12,98 +12,17 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  install:
-    if: "!contains(github.event.head_commit.message, 'skip ci') && !contains(github.event.head_commit.message, '.md')"
-    strategy:
-        matrix:
-          os: [ubuntu-latest, macos-latest, windows-latest]
-          node: ["16"]
-    name: install - ${{ matrix.os }} - ${{ matrix.node }}
-    runs-on: ${{ matrix.os }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
-      - name: restore lerna
-        uses: actions/cache@v2
-        with:
-          path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-
-      - name: Install dependencies
-        run: |
-          yarn
-  
-  lint:
-    needs: install
-    strategy:
-        matrix:
-          os: [ubuntu-latest, macos-latest, windows-latest]
-          node: ["16"]
-    name: lint - ${{ matrix.os }} - ${{ matrix.node }}
-    runs-on: ${{ matrix.os }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
-      - name: Load node_modules
-        uses: actions/cache@v2
-        with:
-          path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/package.json') }}
-      - run: yarn lint
-  build:
-    needs: [lint]
-    strategy:
-        matrix:
-          os: [ubuntu-latest, macos-latest, windows-latest]
-          node: ["16"]
-    name: build - ${{ matrix.os }} - ${{ matrix.node }}
-    runs-on: ${{ matrix.os }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
-      - name: Load node_modules
-        uses: actions/cache@v2
-        with:
-          path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/package.json') }}
-      - run: yarn build
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: build_output
-          path: bin
-
   publish:
     name: Publish
     runs-on: ubuntu-latest
-    needs: [build]
     steps:
       - uses: actions/checkout@v2
       - name: Setup node
         uses: actions/setup-node@v1
         with:
           node-version: 16
-      - name: Download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: build_output
-          path: bin
+      - name: build
+        run: yarn && yarn build
       - name: Check out my other private repo
         uses: actions/checkout@master
         with:

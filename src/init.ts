@@ -35,7 +35,7 @@ const init = async (options?: Options) => {
     message: 'Select ssr framework version (v6 or v7):',
     choices: [
       { title: 'v7(Recommend, Support Rspack, Rolldown-Vite, Webpack@4)', value: 'v7' },
-      { title: 'v6(Support Webpack@4, Vite@2)', value: 'v6' },
+      { title: 'v6(Support Webpack@4, Vite@2)', value: 'v6' }
     ]
   }, {
     onCancel: () => {
@@ -78,9 +78,9 @@ const init = async (options?: Options) => {
           { title: 'Rspack', value: 'rspack' },
           ...(!['nestjs-vue-ssr', 'midway-vue-ssr'].includes(template) ? [{ title: 'Rolldown-Vite', value: 'vite' }] : []),
           { title: 'Webpack', value: 'webpack' }
-        ],
+        ]
       }
-    ]);
+    ])
     tools = response.tools
   }
   logGreen(`${template} is creating...`)
@@ -90,14 +90,14 @@ const init = async (options?: Options) => {
     const pkgJson = require(join(cwd, `./${targetDir}/package.json`))
     const bootstrapFileName = template.includes('nest') ? 'dist/main.js' : 'bootstrap.js'
     pkgJson.scripts = {
-      "start": `ssr start ${tools[0] !== 'webpack' ? `--tool ${tools[0]}` : ''}`,
-      ...(tools.includes('vite') ? { "start:vite": "ssr start --tool vite" } : {}),
-      ...(tools.includes('rspack') ? { "start:rspack": "ssr start --tool rspack" } : {}),
-      "prod": `ssr build ${tools[0] !== 'webpack' ? `--tool ${tools[0]}` : ''} && NODE_ENV=production node ${bootstrapFileName}`,
-      ...(tools.includes('vite') ? { "prod:vite": `ssr build --tool vite && NODE_ENV=production node ${bootstrapFileName}` } : {}),
-      ...(tools.includes('rspack') ? { "prod:rspack": `ssr build --tool rspack && NODE_ENV=production node ${bootstrapFileName}` } : {}),
-      "lint": "biome format --diagnostic-level error",
-      "lint:fix": "biome format --diagnostic-level error --write"
+      start: `ssr start ${tools[0] !== 'webpack' ? `--tool ${tools[0]}` : ''}`,
+      ...(tools.includes('vite') ? { 'start:vite': 'ssr start --tool vite' } : {}),
+      ...(tools.includes('rspack') ? { 'start:rspack': 'ssr start --tool rspack' } : {}),
+      prod: `ssr build ${tools[0] !== 'webpack' ? `--tool ${tools[0]}` : ''} && NODE_ENV=production node ${bootstrapFileName}`,
+      ...(tools.includes('vite') ? { 'prod:vite': `ssr build --tool vite && NODE_ENV=production node ${bootstrapFileName}` } : {}),
+      ...(tools.includes('rspack') ? { 'prod:rspack': `ssr build --tool rspack && NODE_ENV=production node ${bootstrapFileName}` } : {}),
+      lint: 'biome format --diagnostic-level error',
+      'lint:fix': 'biome format --diagnostic-level error --write'
     }
     const devDependencies = pkgJson.devDependencies
     if (!tools.includes('webpack')) {
