@@ -91,11 +91,11 @@ const init = async (options?: Options) => {
     const bootstrapFileName = template.includes('nest') ? 'dist/main.js' : 'bootstrap.js'
     pkgJson.scripts = {
       start: `ssr start ${tools[0] !== 'webpack' ? `--tool ${tools[0]}` : ''}`,
-      ...(tools.includes('vite') ? { 'start:vite': 'ssr start --tool vite' } : {}),
-      ...(tools.includes('rspack') ? { 'start:rspack': 'ssr start --tool rspack' } : {}),
+      ...(tools.slice(1)?.includes('vite') ? { 'start:vite': 'ssr start --tool vite' } : {}),
+      ...(tools.slice(1)?.includes('rspack') ? { 'start:rspack': 'ssr start --tool rspack' } : {}),
       prod: `ssr build ${tools[0] !== 'webpack' ? `--tool ${tools[0]}` : ''} && NODE_ENV=production node ${bootstrapFileName}`,
-      ...(tools.includes('vite') ? { 'prod:vite': `ssr build --tool vite && NODE_ENV=production node ${bootstrapFileName}` } : {}),
-      ...(tools.includes('rspack') ? { 'prod:rspack': `ssr build --tool rspack && NODE_ENV=production node ${bootstrapFileName}` } : {}),
+      ...(tools.slice(1)?.includes('vite') ? { 'prod:vite': `ssr build --tool vite && NODE_ENV=production node ${bootstrapFileName}` } : {}),
+      ...(tools.slice(1)?.includes('rspack') ? { 'prod:rspack': `ssr build --tool rspack && NODE_ENV=production node ${bootstrapFileName}` } : {}),
       lint: 'biome format --diagnostic-level error',
       'lint:fix': 'biome format --diagnostic-level error --write'
     }
