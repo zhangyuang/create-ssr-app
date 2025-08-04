@@ -1,9 +1,7 @@
-import * as fs from 'fs'
-import { promises } from 'fs'
+import { existsSync, promises } from 'fs'
 import { join } from 'path'
 import * as process from 'process'
 import * as Shell from 'shelljs'
-import { dclone } from 'dclone'
 
 const prompts = require('prompts')
 const logGreen = (text: string) => {
@@ -11,9 +9,6 @@ const logGreen = (text: string) => {
 }
 const logRed = (text: string) => {
   console.log(`\x1B[31m ${text}`)
-}
-interface TemplateMap {
-  [key: string]: string | undefined
 }
 
 interface Options {
@@ -23,100 +18,107 @@ interface Options {
 const init = async (options?: Options) => {
   const argv = require('minimist')(process.argv.slice(2))
   const cwd = process.cwd()
-  let isSSR = false // 当前创建的是 ssr 框架的模版
-  const templateMap: TemplateMap = {
-    spa: 'https://github.com/zhangyuang/ssr/tree/dev/example/midway-react-ssr',
-    'serverless-react-ssr': 'https://github.com/zhangyuang/ssr/tree/dev/example/midway-react-ssr',
-    'serverless-vue-ssr': 'https://github.com/zhangyuang/ssr/tree/dev/example/midway-vue-ssr',
-    'midway-react-ssr': 'https://github.com/zhangyuang/ssr/tree/dev/example/midway-react-ssr',
-    'midway-vue-ssr': 'https://github.com/zhangyuang/ssr/tree/dev/example/midway-vue-ssr',
-    'midway-vue3-ssr': 'https://github.com/zhangyuang/ssr/tree/dev/example/midway-vue3-ssr',
-    'nestjs-react-ssr': 'https://github.com/zhangyuang/ssr/tree/dev/example/nestjs-react-ssr',
-    'nestjs-vue-ssr': 'https://github.com/zhangyuang/ssr/tree/dev/example/nestjs-vue-ssr',
-    'nestjs-vue3-ssr': 'https://github.com/zhangyuang/ssr/tree/dev/example/nestjs-vue3-ssr',
-    'ssr-with-js': 'https://github.com/zhangyuang/egg-react-ssr/tree/dev/example/ssr-with-js',
-    'ssr-with-ts': 'https://github.com/zhangyuang/egg-react-ssr/tree/dev/example/ssr-with-ts',
-    'ssr-with-antd': 'https://github.com/zhangyuang/egg-react-ssr/tree/dev/example/ssr-with-antd',
-    'ssr-with-dva': 'https://github.com/zhangyuang/egg-react-ssr/tree/dev/example/ssr-with-dva'
-  }
+
   if (!argv._[0]) {
-    logRed('未指定项目名称 请使用格式 npm init ssr-app')
+    logRed('未指定项目名称 请使用格式 npm init ssr-app <project-name>')
     return
   }
   const targetDir = argv._[0]
 
-  if (fs.existsSync(targetDir)) {
+  if (existsSync(targetDir)) {
     logRed(`${targetDir} already existed, please delete it`)
     return
   }
-  let template = options?.template ?? argv.template
-  if (!template) {
-    const answers = await prompts({
-      type: 'select',
-      name: 'template',
-      message: 'Select a framework:',
-      choices: [
-        { title: 'nestjs-vue3-ssr(Support Vite and Script Setup)', value: 'nestjs-vue3-ssr' },
-        { title: 'nestjs-vue3-ssr-pinia(Support Pinia, Vite and Script Setup)', value: 'nestjs-vue3-ssr-pinia' },
-        { title: 'nestjs-react18-ssr(Support Vite)', value: 'nestjs-react18-ssr' },
-        { title: 'nestjs-react-ssr(Support Vite)', value: 'nestjs-react-ssr' },
-        { title: 'nestjs-vue-ssr', value: 'nestjs-vue-ssr' },
-        { title: 'midway-vue3-ssr(Midawy3.0, Support Vite and Script Setup)', value: 'midway-vue3-ssr' },
-        { title: 'midway-react18-ssr(Midawy3.0, Support Vite)', value: 'midway-react18-ssr' },
-        { title: 'midway-react-ssr(Midawy3.0, Support Vite)', value: 'midway-react-ssr' },
-        { title: 'midway-vue-ssr(Midawy3.0)', value: 'midway-vue-ssr' },
-        { title: 'micro-app-ssr(micro-frontends + ssr)', value: 'micro-app-ssr' }
-      ]
-    }, {
-      onCancel: () => {
-        logRed('退出选择')
-        process.exit(0)
-      }
-    })
-    isSSR = true
-    template = answers.template
-  }
+  const { ssrVersion } = await prompts({
+    type: 'select',
+    name: 'ssrVersion',
+    message: 'Select ssr framework version (v6 or v7):',
+    choices: [
+      { title: 'v7(Recommend, Support Rspack, Rolldown-Vite, Webpack@4)', value: 'v7' },
+      { title: 'v6(Support Webpack@4, Vite@2)', value: 'v6' },
+    ]
+  }, {
+    onCancel: () => {
+      logRed('退出选择')
+      process.exit(0)
+    }
+  })
 
+  const answers = await prompts({
+    type: 'select',
+    name: 'template',
+    message: 'Select a framework:',
+    choices: [
+      { title: 'nestjs-vue3-ssr', value: 'nestjs-vue3-ssr' },
+      { title: 'nestjs-vue3-ssr-pinia', value: 'nestjs-vue3-ssr-pinia' },
+      { title: 'nestjs-react18-ssr', value: 'nestjs-react18-ssr' },
+      { title: 'nestjs-react-ssr', value: 'nestjs-react-ssr' },
+      { title: 'nestjs-vue-ssr', value: 'nestjs-vue-ssr' },
+      { title: 'midway-vue3-ssr', value: 'midway-vue3-ssr' },
+      { title: 'midway-react18-ssr', value: 'midway-react18-ssr' },
+      { title: 'midway-react-ssr', value: 'midway-react-ssr' },
+      { title: 'midway-vue-ssr', value: 'midway-vue-ssr' },
+      { title: 'micro-app-ssr(micro-frontends + ssr@v6)', value: 'micro-app-ssr' }
+    ]
+  }, {
+    onCancel: () => {
+      logRed('退出选择')
+      process.exit(0)
+    }
+  })
+  const template = answers.template
+  let tools = []
+  if (ssrVersion === 'v7') {
+    const response = await prompts([
+      {
+        type: 'multiselect',
+        name: 'tools',
+        message: 'Select build tools which you want to use, you can select multiple tools, but install size will be larger',
+        choices: [
+          { title: 'Rspack', value: 'rspack' },
+          ...(!['nestjs-vue-ssr', 'midway-vue-ssr'].includes(template) ? [{ title: 'Rolldown-Vite', value: 'vite' }] : []),
+          { title: 'Webpack', value: 'webpack' }
+        ],
+      }
+    ]);
+    tools = response.tools
+  }
   logGreen(`${template} is creating...`)
-  const dir = templateMap[template]
-  if (!isSSR) {
-    await dclone({
-      dir
-    })
-  }
-  if (template === 'serverless-react-ssr') {
-    template = 'midway-react-ssr'
-  }
-  if (template === 'serverless-vue-ssr') {
-    template = 'midway-vue-ssr'
-  }
-  if (!isSSR) {
-    Shell.cp('-r', `${join(cwd, `./example/${template}`)}`, `${join(cwd, `./${targetDir}`)}`)
-    Shell.rm('-rf', `${join(cwd, './example')}`)
-  } else {
-    Shell.cp('-r', `${join(__dirname, `../example/${template}`)}`, `${join(cwd, `./${targetDir}`)}`)
-    await promises.writeFile(`${join(cwd, `./${targetDir}/.npmrc`)}`, `
-    # for pnpm mode
-    public-hoist-pattern[]=@babel/runtime
-    ${template.includes('nestjs') ? 'public-hoist-pattern[]=@types/express' : ''}
-    ${template.includes('vue') ? `
-    public-hoist-pattern[]=pinia
-    public-hoist-pattern[]=*vue-server-renderer*
-    public-hoist-pattern[]=*@vue/server-renderer*
-    ` : ''}
-    ${template.includes('react') ? 'public-hoist-pattern[]=ssr-react-dom' : ''}
-    public-hoist-pattern[]=ssr*
-    public-hoist-pattern[]=axios
-    `
-    )
-  }
+  Shell.cp('-r', `${join(__dirname, `../${ssrVersion === 'v7' ? 'ssr_v7' : 'ssr_v6'}/${template}`)}`, `${join(cwd, `./${targetDir}`)}`)
   Shell.cp('-r', `${join(__dirname, '../gitignore.tpl')}`, `${join(cwd, `./${targetDir}/.gitignore`)}`)
+  if (ssrVersion === 'v7') {
+    const pkgJson = require(join(cwd, `./${targetDir}/package.json`))
+    const bootstrapFileName = template.includes('nest') ? 'dist/main.js' : 'bootstrap.js'
+    pkgJson.scripts = {
+      "start": `ssr start ${tools[0] !== 'webpack' ? `--tool ${tools[0]}` : ''}`,
+      ...(tools.includes('vite') ? { "start:vite": "ssr start --tool vite" } : {}),
+      ...(tools.includes('rspack') ? { "start:rspack": "ssr start --tool rspack" } : {}),
+      "prod": `ssr build ${tools[0] !== 'webpack' ? `--tool ${tools[0]}` : ''} && NODE_ENV=production node ${bootstrapFileName}`,
+      ...(tools.includes('vite') ? { "prod:vite": `ssr build --tool vite && NODE_ENV=production node ${bootstrapFileName}` } : {}),
+      ...(tools.includes('rspack') ? { "prod:rspack": `ssr build --tool rspack && NODE_ENV=production node ${bootstrapFileName}` } : {}),
+      "lint": "biome format --diagnostic-level error",
+      "lint:fix": "biome format --diagnostic-level error --write"
+    }
+    const devDependencies = pkgJson.devDependencies
+    if (!tools.includes('webpack')) {
+      delete devDependencies['ssr-webpack']
+    }
+    if (!tools.includes('rspack')) {
+      delete devDependencies['ssr-rspack']
+    }
+    if (!tools.includes('vite')) {
+      delete devDependencies['ssr-vite']
+    }
+
+    pkgJson.devDependencies = devDependencies
+    await promises.writeFile(join(cwd, `./${targetDir}/package.json`), JSON.stringify(pkgJson, null, 2))
+  }
 
   logGreen(`${template} has created succeed `)
 
   console.log(`  cd ${targetDir}`)
-  console.log('  npm install (or `yarn`)')
-  console.log('  npm start (or `yarn start`)')
+  console.log('  yarn install (or `npm install`)')
+  console.log('  yarn start (or `npm start`)')
   console.log()
 }
 
