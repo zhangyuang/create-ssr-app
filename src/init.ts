@@ -83,6 +83,10 @@ const init = async (options?: Options) => {
     ])
     tools = response.tools
   }
+  if (tools.length === 0) {
+    logRed('You must select at least one build tool')
+    return
+  }
   logGreen(`${template} is creating...`)
   Shell.cp('-r', `${join(__dirname, `../${ssrVersion === 'v7' ? 'ssr_v7_example' : 'ssr_v6_example'}/${template}`)}`, `${join(cwd, `./${targetDir}`)}`)
   Shell.cp('-r', `${join(__dirname, '../gitignore.tpl')}`, `${join(cwd, `./${targetDir}/.gitignore`)}`)
@@ -90,18 +94,24 @@ const init = async (options?: Options) => {
     const pkgJson = require(join(cwd, `./${targetDir}/package.json`))
     const bootstrapFileName = template.includes('nest') ? 'dist/main.js' : 'bootstrap.js'
     pkgJson.scripts = {
-      start: `ssr start ${tools[0] !== 'webpack' ? `--tool ${tools[0]}` : ''}`,
+      start: `ssr start --tool ${tools[0]}`,
       ...(tools.slice(1)?.includes('vite') ? { 'start:vite': 'ssr start --tool vite' } : {}),
       ...(tools.slice(1)?.includes('rspack') ? { 'start:rspack': 'ssr start --tool rspack' } : {}),
-      build: `ssr build ${tools[0] !== 'webpack' ? `--tool ${tools[0]}` : ''}`,
+      ...(tools.slice(1)?.includes('webpack') ? { 'start:webpack': 'ssr start --tool webpack' } : {}),
+      build: `ssr build --tool ${tools[0]}`,
       ...(tools.slice(1)?.includes('vite') ? { 'build:vite': 'ssr build --tool vite' } : {}),
       ...(tools.slice(1)?.includes('rspack') ? { 'build:rspack': 'ssr build --tool rspack' } : {}),
-      prod: `ssr build ${tools[0] !== 'webpack' ? `--tool ${tools[0]}` : ''} && NODE_ENV=production node ${bootstrapFileName}`,
+      ...(tools.slice(1)?.includes('webpack') ? { 'build:webpack': 'ssr build --tool webpack' } : {}),
+      prod: `ssr build --tool ${tools[0]} && NODE_ENV=production node ${bootstrapFileName}`,
       ...(tools.slice(1)?.includes('vite') ? { 'prod:vite': `ssr build --tool vite && NODE_ENV=production node ${bootstrapFileName}` } : {}),
       ...(tools.slice(1)?.includes('rspack') ? { 'prod:rspack': `ssr build --tool rspack && NODE_ENV=production node ${bootstrapFileName}` } : {}),
+      ...(tools.slice(1)?.includes('webpack') ? { 'prod:webpack': `ssr build --tool webpack && NODE_ENV=production node ${bootstrapFileName}` } : {}),
       lint: 'biome format --diagnostic-level error',
       'lint:fix': 'biome format --diagnostic-level error --write'
     }
+    delete pkgJson.scripts[`start:${tools[0]}`]
+    delete pkgJson.scripts[`build:${tools[0]}`]
+    delete pkgJson.scripts[`prod:${tools[0]}`]
     const devDependencies = pkgJson.devDependencies
     if (!tools.includes('webpack')) {
       delete devDependencies['ssr-webpack']
