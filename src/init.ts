@@ -68,7 +68,7 @@ const init = async (options?: Options) => {
   })
   const template = answers.template
   let tools = []
-  if (ssrVersion === 'v7') {
+  if (ssrVersion === 'v7' && template !== 'micro-app-ssr') {
     const response = await prompts([
       {
         type: 'multiselect',

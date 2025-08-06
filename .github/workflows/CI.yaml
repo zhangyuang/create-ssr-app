@@ -53,7 +53,9 @@ jobs:
           cp -R ./ssr_v6/example/ ./ssr_v6_example
           cp -R ./ssr_v7/example/ ./ssr_v7_example
           cp -R ./micro-app-ssr_v7 ./ssr_v7_example
+          mv ./ssr_v7_example/micro-app-ssr_v7 ./ssr_v7_example/micro-app-ssr
           cp -R ./micro-app-ssr_v6 ./ssr_v6_example
+          mv ./ssr_v6_example/micro-app-ssr_v6 ./ssr_v6_example/micro-app-ssr
           rm -rf ssr_v7
           rm -rf ssr_v6
           rm -rf micro-app-ssr_v7
