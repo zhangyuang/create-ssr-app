@@ -39,17 +39,25 @@ jobs:
         uses: actions/checkout@master
         with:
           repository: zhangyuang/micro-app-ssr
-          path: micro-app-ssr
+          path: micro-app-ssr_v7
           ref: master
+      - name: Check out my other private repo
+        uses: actions/checkout@master
+        with:
+          repository: zhangyuang/micro-app-ssr
+          path: micro-app-ssr_v6
+          ref: v6
 
       - name: Publish
         run: | 
           cp -R ./ssr_v6/example/ ./ssr_v6_example
           cp -R ./ssr_v7/example/ ./ssr_v7_example
-          cp -R ./micro-app-ssr ./example
+          cp -R ./micro-app-ssr_v7 ./ssr_v7_example
+          cp -R ./micro-app-ssr_v6 ./ssr_v6_example
           rm -rf ssr_v7
           rm -rf ssr_v6
-          rm -rf ./micro-app-ssr
+          rm -rf micro-app-ssr_v7
+          rm -rf micro-app-ssr_v6
           ls
           if git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+$";
           then

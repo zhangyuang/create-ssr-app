@@ -58,7 +58,7 @@ const init = async (options?: Options) => {
       { title: 'midway-react18-ssr', value: 'midway-react18-ssr' },
       { title: 'midway-react-ssr', value: 'midway-react-ssr' },
       { title: 'midway-vue-ssr', value: 'midway-vue-ssr' },
-      { title: 'micro-app-ssr(micro-frontends + ssr@v6)', value: 'micro-app-ssr' }
+      { title: 'micro-app-ssr(micro-frontends)', value: 'micro-app-ssr' }
     ]
   }, {
     onCancel: () => {
