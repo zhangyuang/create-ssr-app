@@ -90,7 +90,7 @@ const init = async (options?: Options) => {
   logGreen(`${template} is creating...`)
   Shell.cp('-r', `${join(__dirname, `../${ssrVersion === 'v7' ? 'ssr_v7_example' : 'ssr_v6_example'}/${template}`)}`, `${join(cwd, `./${targetDir}`)}`)
   Shell.cp('-r', `${join(__dirname, '../gitignore.tpl')}`, `${join(cwd, `./${targetDir}/.gitignore`)}`)
-  if (ssrVersion === 'v7') {
+  if (ssrVersion === 'v7' && template !== 'micro-app-ssr') {
     const pkgJson = require(join(cwd, `./${targetDir}/package.json`))
     const bootstrapFileName = template.includes('nest') ? 'dist/main.js' : 'bootstrap.js'
     pkgJson.scripts = {
